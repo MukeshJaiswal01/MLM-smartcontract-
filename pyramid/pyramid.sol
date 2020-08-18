@@ -12,7 +12,7 @@ contract simplePyramid{
     mapping (address => uint) public balances;
     
     constructor ()  payable public{
-        require(msg.value >= MinimumInvestmen, "less money");
+        require(msg.value >= MinimumInvestmen, "less ether");
         investors_length =3;
         investors.push(msg.sender);
         numInvestor = 1;
@@ -22,7 +22,7 @@ contract simplePyramid{
         
     }
     function () payable external{
-        require(msg.value >= MinimumInvestmen, "less money");
+        require(msg.value >= MinimumInvestmen, "less ether");
         balances[address(this)] += msg.value;
         numInvestor += 1;
         investors.push(msg.sender);
