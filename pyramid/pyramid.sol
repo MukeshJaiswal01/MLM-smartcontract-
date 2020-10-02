@@ -11,8 +11,8 @@ contract simplePyramid{
     address payable [] public investors;
     mapping (address => uint) public balances;
     
-    constructor ()  payable public{
-        require(msg.value >= MinimumInvestmen, "less ether");
+    constructor ()  payable private{
+        require(msg.value >= MinimumInvestmen, "more ether required");
         investors_length =3;
         investors.push(msg.sender);
         numInvestor = 1;
@@ -22,7 +22,7 @@ contract simplePyramid{
         
     }
     function () payable external{
-        require(msg.value >= MinimumInvestmen, "less ether");
+        require(msg.value >= MinimumInvestmen, "more ether required");
         balances[address(this)] += msg.value;
         numInvestor += 1;
         investors.push(msg.sender);
@@ -47,7 +47,7 @@ contract simplePyramid{
        
     }
     
-    function withdraw() public{
+    function withdraw() private{
         uint payout = balances[msg.sender];
         balances[msg.sender] = 0;
         msg.sender.transfer(payout);
