@@ -1,8 +1,8 @@
 pragma solidity >=0.4.21 <0.7.0;
-
+//this is a simple contract
 contract SimplePonzi{
-    address  payable public currentInvester;
-    uint public currentInvestment = 0;
+    address  payable private currentInvester;
+    uint private currentInvestment = 0;
     
     function () payable external{
         
